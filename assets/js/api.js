@@ -1,6 +1,6 @@
-// =============================
+// ===============================
 // SLOT API
-// =============================
+// ===============================
 
 async function registerUser(username, email, password) {
 
@@ -13,9 +13,9 @@ async function registerUser(username, email, password) {
 
     try {
 
-        const response = await fetch(url);
+        const res = await fetch(url);
 
-        return await response.json();
+        return await res.json();
 
     } catch (err) {
 
