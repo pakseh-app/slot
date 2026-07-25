@@ -11,19 +11,18 @@ async function registerUser(username, email, password) {
         "&email=" + encodeURIComponent(email) +
         "&password=" + encodeURIComponent(password);
 
-    try {
+    const res = await fetch(url);
+    return await res.json();
+}
 
-        const res = await fetch(url);
+async function loginUser(username, password) {
 
-        return await res.json();
+    const url =
+        API_URL +
+        "?action=login" +
+        "&username=" + encodeURIComponent(username) +
+        "&password=" + encodeURIComponent(password);
 
-    } catch (err) {
-
-        return {
-            success: false,
-            message: err.message
-        };
-
-    }
-
+    const res = await fetch(url);
+    return await res.json();
 }
