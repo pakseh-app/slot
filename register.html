@@ -53,6 +53,44 @@
 <script src="assets/js/config.js"></script>
 <script src="assets/js/api.js"></script>
 
-</body>
+<script>
 
+const btn = document.getElementById("btnRegister");
+
+btn.addEventListener("click", async () => {
+
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+
+    if (!username || !email || !password || !confirm) {
+        alert("Semua data harus diisi.");
+        return;
+    }
+
+    if (password !== confirm) {
+        alert("Konfirmasi password tidak sama.");
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Memproses...";
+
+    const hasil = await registerUser(username, email, password);
+
+    btn.disabled = false;
+    btn.innerText = "DAFTAR";
+
+    alert(hasil.message);
+
+    if (hasil.success) {
+        location.href = "login.html";
+    }
+
+});
+
+</script>
+
+</body>
 </html>
