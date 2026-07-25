@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
@@ -11,42 +10,29 @@
 <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
-
 <body>
 
 <div class="login-box">
 
-    <h1>DAFTAR AKUN</h1>
+<h1>DAFTAR AKUN</h1>
 
-    <p>Buat akun baru</p>
+<p>Buat akun baru</p>
 
-    <input
-        type="text"
-        id="username"
-        placeholder="Username">
+<input type="text" id="username" placeholder="Username">
 
-    <input
-        type="email"
-        id="email"
-        placeholder="Email">
+<input type="email" id="email" placeholder="Email">
 
-    <input
-        type="password"
-        id="password"
-        placeholder="Password">
+<input type="password" id="password" placeholder="Password">
 
-    <input
-        type="password"
-        id="confirmPassword"
-        placeholder="Konfirmasi Password">
+<input type="password" id="confirmPassword" placeholder="Konfirmasi Password">
 
-    <button id="btnRegister">
-        DAFTAR
-    </button>
+<button id="btnRegister">
+DAFTAR
+</button>
 
-    <a href="login.html">
-        Sudah punya akun? Login
-    </a>
+<a href="login.html">
+Sudah punya akun? Login
+</a>
 
 </div>
 
@@ -55,40 +41,53 @@
 
 <script>
 
-const btn = document.getElementById("btnRegister");
+document
+.getElementById("btnRegister")
+.onclick = async function(){
 
-btn.addEventListener("click", async () => {
+const username=document.getElementById("username").value.trim();
 
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirm = document.getElementById("confirmPassword").value;
+const email=document.getElementById("email").value.trim();
 
-    if (!username || !email || !password || !confirm) {
-        alert("Semua data harus diisi.");
-        return;
-    }
+const password=document.getElementById("password").value;
 
-    if (password !== confirm) {
-        alert("Konfirmasi password tidak sama.");
-        return;
-    }
+const confirm=document.getElementById("confirmPassword").value;
 
-    btn.disabled = true;
-    btn.innerText = "Memproses...";
+if(username==""){
+alert("Username kosong");
+return;
+}
 
-    const hasil = await registerUser(username, email, password);
+if(email==""){
+alert("Email kosong");
+return;
+}
 
-    btn.disabled = false;
-    btn.innerText = "DAFTAR";
+if(password==""){
+alert("Password kosong");
+return;
+}
 
-    alert(hasil.message);
+if(password!=confirm){
+alert("Password tidak sama");
+return;
+}
 
-    if (hasil.success) {
-        location.href = "login.html";
-    }
+const hasil=await registerUser(
+username,
+email,
+password
+);
 
-});
+alert(hasil.message);
+
+if(hasil.success){
+
+location.href="login.html";
+
+}
+
+};
 
 </script>
 
